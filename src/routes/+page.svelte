@@ -3,20 +3,26 @@
 	import { commonmark } from '@milkdown/preset-commonmark';
 	import { nord } from '@milkdown/theme-nord';
 
-	const editor = Editor.make().config(nord).use(commonmark);
-
-	console.log('status1', editor.status);
-
-	const createEditor = (dom: any) => {
-		editor
-			.config((ctx) => {
-				ctx.set(rootCtx, dom);
-			})
-			.create()
-			.then(() => {
-				console.log('status2', editor.status);
-			});
-	};
+	// components
+	import TextEditor from '$lib/components/TextEditor/TextEditor.svelte';
+	import WysiwygEditor from '$lib/components/WysiwygEditor/WysiwygEditor.svelte';
 </script>
 
-<div use:createEditor />
+<div class="editor_container">
+	<div>
+		<TextEditor />
+	</div>
+	<div>
+		<WysiwygEditor />
+	</div>
+</div>
+
+<style>
+	.editor_container {
+		width: 100%;
+		display: flex;
+	}
+	.editor_container div {
+		width: 50%;
+	}
+</style>
